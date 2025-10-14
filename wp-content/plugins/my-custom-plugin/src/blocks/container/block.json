@@ -1,0 +1,56 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "custom/container",
+	"version": "0.1.0",
+	"title": "Container",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "Example block scaffolded with Create Block tool.",
+	"example": {},
+	"supports": {
+		"html": true,
+		"anchor": true,
+		"color": {
+			"text": true,
+			"background": true,
+			"gradients": true,
+			"__experimentalDefaultControls": {
+				"color": false,
+				"background": false,
+				"gradients": false
+			}
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"__experimentalDefaultControls": {
+				"margin": false,
+				"padding": false
+			}
+		}
+	},
+	"attributes": {
+		"position": {
+			"enum": ["static", "relative"],
+			"default": "static"
+		},
+		"isolation": {
+			"enum": ["isolate", "auto"],
+			"default": "isolate"
+		},
+		"textAlign": {
+			"enum": ["start", "center", "end"],
+			"default": "start"
+		},
+		"hasOutline": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"textdomain": "custom",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

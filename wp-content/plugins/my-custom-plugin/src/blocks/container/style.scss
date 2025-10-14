@@ -1,0 +1,24 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+@use "../../scss/abstracts" as *;
+@use "sass:map";
+@use "sass:list";
+
+// Single container class with breakpoint max-widths
+.wp-block-custom-container {
+	@include make-container;
+
+	// Responsive containers that are 100% wide until a breakpoint
+	@each $breakpoint, $container-max-width in $container-max-widths {
+		$bp: breakpoint-prefix($breakpoint);
+
+		@include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+			max-width: $container-max-width;
+		}
+	}
+}
