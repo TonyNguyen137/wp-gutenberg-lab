@@ -16,12 +16,7 @@ import {
 	useInnerBlocksProps,
 	InspectorControls,
 } from "@wordpress/block-editor";
-import {
-	Panel,
-	PanelBody,
-	SelectControl,
-	ToggleControl,
-} from "@wordpress/components";
+import { PanelBody, SelectControl, ToggleControl } from "@wordpress/components";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -41,24 +36,27 @@ import metadata from "./block.json";
  * @return {Element} Element to render.
  */
 
-const CLASS_POSITION_DEFAULT = "static";
-const CLASS_POSITION_RELATIVE = "relative";
-const CLASS_ALIGN_DEFAULT = "start";
-const CLASS_ALIGN_CENTER = "center";
-const CLASS_ALIGN_END = "end";
-const CLASS_ISOLATION_DEFAULT = "auto";
-const CLASS_ISOLATION_ISOLATE = "isolate";
+const STYLE_POSITION_STATIC = "static";
+const STYLE_POSITION_RELATIVE = "relative";
+const STYLE_ALIGN_START = "start";
+const STYLE_ALIGN_CENTER = "center";
+const STYLE_ALIGN_END = "end";
+const STYLE_ISOLATION_AUTO = "auto";
+const STYLE_ISOLATION_ISOLATE = "isolate";
 const CLASS_OUTLINE = "has-outline";
 
 export default function Edit({ attributes, setAttributes }) {
 	const { textAlign, position, isolation, hasOutline } = attributes;
-	// console.log("attributes", attributes);
+	console.log("attributes", attributes);
 	console.log("useblockProps", useBlockProps());
 
-	const className = {};
+	const classes = [hasOutline ? CLASS_OUTLINE : undefined];
 	const style = {};
 
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps({
+		className: classes.join(" "),
+	});
+
 	const innerBlocksProps = useInnerBlocksProps(blockProps);
 
 	const handleToggle = (newValue) => {
@@ -76,6 +74,7 @@ export default function Edit({ attributes, setAttributes }) {
 		<>
 			<InspectorControls group="styles">
 				<PanelBody
+					initialOpen={false}
 					title={__("Umrandung anzeigen/verbergen", metadata.textdomain)}
 				>
 					<ToggleControl
@@ -91,21 +90,24 @@ export default function Edit({ attributes, setAttributes }) {
 						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
-				<PanelBody title={__("Text Ausrichtung", metadata.textdomain)}>
+				<PanelBody
+					initialOpen={false}
+					title={__("Text Ausrichtung", metadata.textdomain)}
+				>
 					<SelectControl
 						value={textAlign}
 						options={[
 							{
 								label: __("links", metadata.textdomain),
-								value: CLASS_ALIGN_DEFAULT,
+								value: STYLE_ALIGN_START,
 							},
 							{
 								label: __("zenter", metadata.textdomain),
-								value: CLASS_ALIGN_CENTER,
+								value: STYLE_ALIGN_CENTER,
 							},
 							{
 								label: __("rechts", metadata.textdomain),
-								value: CLASS_ALIGN_END,
+								value: STYLE_ALIGN_END,
 							},
 						]}
 						onChange={handlePositionSelect}
@@ -113,17 +115,20 @@ export default function Edit({ attributes, setAttributes }) {
 						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
-				<PanelBody title={__("Position", metadata.textdomain)}>
+				<PanelBody
+					initialOpen={false}
+					title={__("Position", metadata.textdomain)}
+				>
 					<SelectControl
 						value={position}
 						options={[
 							{
 								label: __("static", metadata.textdomain),
-								value: CLASS_POSITION_DEFAULT,
+								value: STYLE_POSITION_STATIC,
 							},
 							{
 								label: __("relative", metadata.textdomain),
-								value: CLASS_POSITION_RELATIVE,
+								value: STYLE_POSITION_RELATIVE,
 							},
 						]}
 						onChange={handlePositionSelect}
@@ -131,17 +136,20 @@ export default function Edit({ attributes, setAttributes }) {
 						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
-				<PanelBody title={__("Isolation", metadata.textdomain)}>
+				<PanelBody
+					initialOpen={false}
+					title={__("Isolation", metadata.textdomain)}
+				>
 					<SelectControl
 						value={isolation}
 						options={[
 							{
 								label: __("auto", metadata.textdomain),
-								value: CLASS_ISOLATION_DEFAULT,
+								value: STYLE_ISOLATION_AUTO,
 							},
 							{
 								label: __("isolate", metadata.textdomain),
-								value: CLASS_ISOLATION_ISOLATE,
+								value: STYLE_ISOLATION_ISOLATE,
 							},
 						]}
 						onChange={handlePositionSelect}

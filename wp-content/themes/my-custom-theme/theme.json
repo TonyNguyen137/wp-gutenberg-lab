@@ -2,31 +2,6 @@
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 3,
   "settings": {
-    "appearanceTools": true,
-    "layout": {
-      "contentSize": "840px",
-      "wideSize": "1100px"
-    },
-    "border": {
-      "color": true,
-      "radius": true,
-      "style": true,
-      "width": true
-    },
-    "color": {
-      "link": true
-    },
-    "dimensions": {
-      "minHeight": true
-    },
-
-    "spacing": {
-      "blockGap": true,
-      "margin": true,
-      "padding": true
-    },
-    "typography": {
-      "lineHeight": true
-    }
+    "appearanceTools": true
   }
 }

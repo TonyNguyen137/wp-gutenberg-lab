@@ -15,7 +15,8 @@
 		"start": "wp-scripts start --webpack-src-dir=src/blocks --blocks-manifest --progress"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.25.0"
+		"@wordpress/scripts": "^30.25.0",
+		"classnames": "^2.5.1"
 	},
 	"dependencies": {
 		"@wordpress/icons": "^10.32.0"

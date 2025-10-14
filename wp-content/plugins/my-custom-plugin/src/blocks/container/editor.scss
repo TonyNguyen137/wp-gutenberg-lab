@@ -5,9 +5,8 @@
  */
 
 .wp-block-custom-container {
-	border: 1px dotted #f00;
-
-	&--togle {
-		margin-left: 0;
+	&.has-outline {
+		border: 1px dotted black;
+		min-height: 25px;
 	}
 }
