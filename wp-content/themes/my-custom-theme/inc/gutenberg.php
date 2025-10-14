@@ -34,3 +34,11 @@ add_action( 'wp_enqueue_scripts', 'prefix_remove_core_block_styles' );
  */
 
 remove_action( 'wp_footer', 'the_block_template_skip_link' );
+
+
+/**
+ * removes block theme's default layout flow
+ * @see https://wordpress.stackexchange.com/questions/413131/is-there-any-filter-or-action-hook-to-remove-layout-classes-from-appearing-in-my
+ */
+
+//add_theme_support( 'disable-layout-styles' );
