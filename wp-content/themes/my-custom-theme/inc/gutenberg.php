@@ -4,8 +4,8 @@
  */
 
 function dequeue_wp_block_library_css(){
-    wp_dequeue_style( 'wp-block-library' );
-   	wp_dequeue_style( 'wp-emoji-styles' );
+    // wp_dequeue_style( 'wp-block-library' );
+   	// wp_dequeue_style( 'wp-emoji-styles' );
 		// wp_dequeue_style( 'global-styles' );
 } 
 
@@ -19,11 +19,14 @@ add_action( 'wp_enqueue_scripts', 'dequeue_wp_block_library_css', 100 );
 function prefix_remove_core_block_styles() {
 	global $wp_styles;
 
-	// foreach ( $wp_styles->queue as $key => $handle ) {
-	// 	if ( strpos( $handle, 'wp-block-' ) === 0  || strpos( $handle, 'wp-emoji-' ) === 0   ) {
-	// 		wp_dequeue_style( $handle );
-	// 	}
-	// }
+	$keep = [];
+	vdump($wp_styles->queue);
+	foreach ( $wp_styles->queue as $key => $handle ) {
+		if ( (strpos( $handle, 'wp-block-' ) === 0  || strpos( $handle, 'wp-emoji-' ) === 0) && !in_array( $handle, $keep )   ) {
+
+			wp_dequeue_style( $handle );
+		}
+	}
 }
 add_action( 'wp_enqueue_scripts', 'prefix_remove_core_block_styles' );
 
@@ -41,4 +44,4 @@ remove_action( 'wp_footer', 'the_block_template_skip_link' );
  * @see https://wordpress.stackexchange.com/questions/413131/is-there-any-filter-or-action-hook-to-remove-layout-classes-from-appearing-in-my
  */
 
-//add_theme_support( 'disable-layout-styles' );
+add_theme_support( 'disable-layout-styles' );

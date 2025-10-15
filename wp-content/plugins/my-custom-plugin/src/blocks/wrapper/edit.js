@@ -19,7 +19,8 @@ import {
 	AlignmentControl,
 } from "@wordpress/block-editor";
 import { PanelBody, SelectControl, ToggleControl } from "@wordpress/components";
-
+import { useDispatch } from "@wordpress/data";
+import { store as blockEditorStore } from "@wordpress/block-editor";
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -40,14 +41,16 @@ import metadata from "./block.json";
 
 const STYLE_POSITION_STATIC = "static";
 const STYLE_POSITION_RELATIVE = "relative";
+const STYLE_ALIGN_LEFT = "left";
+
 const STYLE_ISOLATION_AUTO = "auto";
 const STYLE_ISOLATION_ISOLATE = "isolate";
-const STYLE_ALIGN_LEFT = "left";
 const CLASS_OUTLINE = "has-outline";
 
-export default function Edit({ attributes, setAttributes }) {
-	const { textAlign, position, isolation, hasOutline } = attributes;
-	console.log("textalign ", textAlign);
+export default function Edit({ attributes, setAttributes, clientId }) {
+	const { textAlign, position, isolation, hasOutline, tagName } = attributes;
+	const { updateBlockAttributes } = useDispatch(blockEditorStore);
+	console.log("here: ", updateBlockAttributes);
 
 	const classes = [hasOutline ? CLASS_OUTLINE : undefined];
 
@@ -88,10 +91,18 @@ export default function Edit({ attributes, setAttributes }) {
 	};
 
 	const handleTextAlignSelect = (newValue) => {
-		console.log("align value ", newValue);
-
 		setAttributes({
 			textAlign: newValue,
+		});
+	};
+
+	const handleSelectTagName = (newValue) => {
+		setAttributes({
+			tagName: newValue,
+		});
+
+		updateBlockAttributes(clientId, {
+			metadata: { name: `<${value}>` },
 		});
 	};
 
@@ -161,6 +172,23 @@ export default function Edit({ attributes, setAttributes }) {
 						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
+			</InspectorControls>
+			<InspectorControls group="advanced">
+				<SelectControl
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
+					value={tagName}
+					onChange={handleSelectTagName}
+					options={[
+						{ label: __("Default (<div>)"), value: "div" },
+						{ label: "<header>", value: "header" },
+						{ label: "<main>", value: "main" },
+						{ label: "<section>", value: "section" },
+						{ label: "<article>", value: "article" },
+						{ label: "<aside>", value: "aside" },
+						{ label: "<footer>", value: "footer" },
+					]}
+				/>
 			</InspectorControls>
 			<div {...innerBlocksProps} />
 		</>

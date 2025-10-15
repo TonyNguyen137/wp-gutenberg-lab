@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "custom/container",
+	"name": "custom/wrapper",
 	"version": "0.1.0",
-	"title": "Container",
+	"title": "Gruppierung",
 	"category": "widgets",
 	"icon": "smiley",
 	"description": "Example block scaffolded with Create Block tool.",
@@ -23,12 +23,18 @@
 		},
 		"spacing": {
 			"padding": true,
+			"margin": true,
 			"__experimentalDefaultControls": {
-				"padding": false
+				"padding": false,
+				"margin": false
 			}
 		}
 	},
 	"attributes": {
+		"tagName": {
+			"type": "string",
+			"default": "div"
+		},
 		"position": {
 			"enum": ["static", "relative"],
 			"default": "static"
@@ -48,7 +54,5 @@
 	},
 	"textdomain": "custom",
 	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"editorStyle": "file:./index.css"
 }

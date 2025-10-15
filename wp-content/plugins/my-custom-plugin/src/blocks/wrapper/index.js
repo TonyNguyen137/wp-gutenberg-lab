@@ -12,7 +12,6 @@ import { Icon, group } from "@wordpress/icons";
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import "./style.scss";
 
 /**
  * Internal dependencies
@@ -31,7 +30,18 @@ registerBlockType(metadata.name, {
 	 * @see ./edit.js
 	 */
 	edit: Edit,
+	__experimentalLabel(attributes, { context }) {
+		const { tagName } = attributes;
+		console.log("attribute ", attributes);
 
+		// In the list view, use the block's content as the label.
+		// If the content is empty, fall back to the default label.
+		if (context === "list-view" && tagName !== "div") {
+			const firstLetterUpperCase = tagName.charAt(0).toUpperCase();
+			const remainingLetters = tagName.substring(1);
+			return firstLetterUpperCase + remainingLetters;
+		}
+	},
 	/**
 	 * @see ./save.js
 	 */

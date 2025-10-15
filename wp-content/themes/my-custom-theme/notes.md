@@ -186,6 +186,14 @@ add_editor_style( '/public/custom-editor.wbpgs.min.css' );
 
 https://wordpress.github.io/gutenberg/?path=/docs/icons-icon--default
 
+## block.json metadata
+
+https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/
+
+## @wordpress core blocks github
+
+https://github.com/WordPress/gutenberg/tree/trunk/packages/block-library/src
+
 ## useSelect Hook
 
 // Image holen

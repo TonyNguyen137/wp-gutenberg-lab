@@ -20,7 +20,7 @@ const STYLE_POSITION_STATIC = "static";
 const STYLE_ALIGN_START = "start";
 const STYLE_ISOLATION_AUTO = "auto";
 export default function save({ attributes }) {
-	const { textAlign, position, isolation } = attributes;
+	const { textAlign, position, isolation, tagName: Tag } = attributes;
 
 	const style = {
 		...{
@@ -38,5 +38,5 @@ export default function save({ attributes }) {
 		style,
 	});
 	const innerBlocksProps = useInnerBlocksProps.save(blockProps);
-	return <div {...innerBlocksProps} />;
+	return <Tag {...innerBlocksProps} />;
 }
