@@ -17,7 +17,7 @@ import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
  */
 
 const STYLE_POSITION_STATIC = "static";
-const STYLE_ALIGN_START = "start";
+const STYLE_ALIGN_START = "left";
 const STYLE_ISOLATION_AUTO = "auto";
 export default function save({ attributes }) {
 	const { textAlign, position, isolation, tagName: Tag } = attributes;
