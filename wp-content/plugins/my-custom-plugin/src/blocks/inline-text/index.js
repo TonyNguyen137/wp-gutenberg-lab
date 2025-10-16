@@ -4,7 +4,8 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 import { registerBlockType } from "@wordpress/blocks";
-import { Icon, group } from "@wordpress/icons";
+import { Icon, textHorizontal } from "@wordpress/icons";
+
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * All files containing `style` keyword are bundled together. The code used
@@ -30,22 +31,12 @@ registerBlockType(metadata.name, {
 	 * @see ./edit.js
 	 */
 	edit: Edit,
-	__experimentalLabel(attributes, { context }) {
-		const { tagName } = attributes;
 
-		// In the list view, use the block's content as the label.
-		// If the content is empty, fall back to the default label.
-		if (context === "list-view" && tagName !== "div") {
-			const firstLetterUpperCase = tagName.charAt(0).toUpperCase();
-			const remainingLetters = tagName.substring(1);
-			return firstLetterUpperCase + remainingLetters;
-		}
-	},
 	/**
 	 * @see ./save.js
 	 */
 	save,
 	icon: {
-		src: <Icon icon={group} />,
+		src: <Icon icon={textHorizontal} />,
 	},
 });

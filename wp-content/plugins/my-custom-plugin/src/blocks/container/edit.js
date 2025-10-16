@@ -47,7 +47,6 @@ const CLASS_OUTLINE = "has-outline";
 
 export default function Edit({ attributes, setAttributes }) {
 	const { textAlign, position, isolation, hasOutline } = attributes;
-	console.log("textalign ", textAlign);
 
 	const classes = [hasOutline ? CLASS_OUTLINE : undefined];
 
