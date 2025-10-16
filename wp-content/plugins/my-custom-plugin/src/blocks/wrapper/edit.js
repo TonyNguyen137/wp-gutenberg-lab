@@ -41,16 +41,14 @@ import metadata from "./block.json";
 
 const STYLE_POSITION_STATIC = "static";
 const STYLE_POSITION_RELATIVE = "relative";
-const STYLE_ALIGN_LEFT = "left";
-
+const STYLE_ALIGN_RIGHT = "right";
+const STYLE_ALIGN_CENTER = "center";
 const STYLE_ISOLATION_AUTO = "auto";
 const STYLE_ISOLATION_ISOLATE = "isolate";
 const CLASS_OUTLINE = "has-outline";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
 	const { textAlign, position, isolation, hasOutline, tagName } = attributes;
-	const { updateBlockAttributes } = useDispatch(blockEditorStore);
-	console.log("here: ", updateBlockAttributes);
 
 	const classes = [hasOutline ? CLASS_OUTLINE : undefined];
 
@@ -59,7 +57,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			position: position !== STYLE_POSITION_STATIC ? position : undefined,
 		},
 		...{
-			textAlign: textAlign !== STYLE_ALIGN_LEFT ? textAlign : undefined,
+			textAlign:
+				textAlign === STYLE_ALIGN_RIGHT || textAlign === STYLE_ALIGN_CENTER
+					? textAlign
+					: undefined,
 		},
 		...{
 			isolation: isolation !== STYLE_ISOLATION_AUTO ? isolation : undefined,
@@ -91,6 +92,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	};
 
 	const handleTextAlignSelect = (newValue) => {
+		console.log("newVale", newValue);
+
 		setAttributes({
 			textAlign: newValue,
 		});
@@ -99,10 +102,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const handleSelectTagName = (newValue) => {
 		setAttributes({
 			tagName: newValue,
-		});
-
-		updateBlockAttributes(clientId, {
-			metadata: { name: `<${value}>` },
 		});
 	};
 
