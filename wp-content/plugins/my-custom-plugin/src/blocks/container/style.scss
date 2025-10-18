@@ -10,7 +10,7 @@
 @use "sass:list";
 
 // Single container class with breakpoint max-widths
-.wp-block-custom-container {
+.wp-block-yournamespace-container {
 	@include make-container;
 
 	// Responsive containers that are 100% wide until a breakpoint

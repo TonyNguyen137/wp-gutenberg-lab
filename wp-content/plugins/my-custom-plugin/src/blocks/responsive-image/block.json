@@ -1,0 +1,50 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "yournamespace/image-responsive",
+	"version": "0.1.0",
+	"title": "responsives Bild",
+	"category": "media",
+	"icon": "format-image",
+	"description": "Zeigt ein Bild, das sich automatisch an verschiedene Bildschirmgrößen und Auflösungen anpasst.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"id": {
+			"type": "number"
+		},
+		"url": {
+			"type": "string"
+		},
+		"width": {
+			"type": "number"
+		},
+		"height": {
+			"type": "number"
+		},
+
+		"loadingMode": {
+			"type": "string",
+			"enum": ["auto", "lazy", "eager"],
+			"default": "auto"
+		},
+
+		"srcSize": {
+			"type": "string",
+			"default": "image-770"
+		},
+		"srcsetSizes": {
+			"type": "array"
+		},
+		"sizes": {
+			"type": "string"
+		}
+	},
+	"textdomain": "yourtextdomain",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

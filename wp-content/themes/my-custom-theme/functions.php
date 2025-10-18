@@ -1,5 +1,5 @@
 <?php
-$includes = glob(get_template_directory() . '/inc/*.php');
+$includes = glob(get_template_directory() . '/includes/*.php');
 
 
 foreach ($includes as $file) {

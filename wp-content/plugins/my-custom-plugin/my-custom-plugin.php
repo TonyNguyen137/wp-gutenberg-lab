@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Custom
+ * Plugin Name:       My Custom Plugin
  * Description:       Example block scaffolded with Create Block tool.
  * Version:           0.1.0
  * Requires at least: 6.7
@@ -8,7 +8,7 @@
  * Author:            The WordPress Contributors
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       custom
+ * Text Domain:       yourtextdomain
  *
  * @package CreateBlock
  */
