@@ -1,6 +1,7 @@
 <?php
 add_action( 'after_setup_theme', function () {
   add_image_size( 'image-770', 770);
+  add_image_size( 'image-1400', 1400);
 
 });
 
@@ -23,6 +24,7 @@ add_action( 'after_setup_theme', function () {
 
 add_filter( 'image_size_names_choose', function( $sizes ) {
 		$sizes["image-770"] = "770px";
+		$sizes["image-1400"] = "1400px";
 
     return $sizes;
 }); 

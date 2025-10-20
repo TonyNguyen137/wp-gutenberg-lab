@@ -61,8 +61,6 @@ const RESET_ATTRIBUTES = {
 	width: undefined,
 	height: undefined,
 	loadingMode: AUTO,
-	srcsetSizes: [],
-	sizes: undefined,
 };
 
 function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
@@ -82,7 +80,16 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
 		const { getSettings } = select("core/block-editor");
 
 		return getSettings().imageSizes;
-	});
+	}, []);
+
+	const srcsetOptions =
+		editorImageSizes &&
+		editorImageSizes.map((object) => {
+			return {
+				label: object.name,
+				value: object.slug,
+			};
+		});
 
 	const getImageSizeOptions = () => {
 		if (!imageObject) return [];
@@ -90,6 +97,9 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
 		const options = [];
 
 		const sizes = imageObject.media_details.sizes;
+		// console.log("getImagesSizeOptions imageObject", imageObject);
+		// console.log("media_Details.sizes", sizes);
+		// console.log("sizes", imageObject.sizes);
 
 		for (const key in sizes) {
 			const size = sizes[key];
@@ -110,7 +120,7 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
 
 	// console.log("url", url);
 
-	console.log("srcsize anfang", srcSize);
+	// console.log("srcsize anfang", srcSize);
 
 	// console.log("editorImageSizes ", editorImageSizes);
 
@@ -121,6 +131,8 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
 	// console.log("loading mode", loadingMode);
 
 	// console.log("options", getImageSizeOptions);
+
+	console.log("srcset Sizes", srcsetSizes);
 
 	let classes = [];
 
@@ -168,25 +180,27 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
 
 		const sizes = image?.sizes ?? image?.media_details?.sizes ?? null;
 
-		console.log("srcSize", srcSize);
+		// console.log(
+		// 	"choosed",
+		// 	sizes?.[srcSize]?.url ?? sizes?.[srcSize]?.source_url ?? null,
+		// );
 
-		console.log(
-			"choosed",
-			sizes?.[srcSize]?.url ?? sizes?.[srcSize]?.source_url ?? null,
-		);
+		// console.log(
+		// 	"width",
+		// 	sizes?.[srcSize]?.width ?? sizes?.[srcSize]?.width ?? image.width,
+		// );
 
-		console.log(
-			"width",
-			sizes?.[srcSize]?.width ?? sizes?.[srcSize]?.width ?? image.width,
-		);
-
-		console.log(
-			"height",
-			sizes?.[srcSize]?.height ?? sizes?.[srcSize]?.height ?? image.height,
-		);
+		// console.log(
+		// 	"height",
+		// 	sizes?.[srcSize]?.height ?? sizes?.[srcSize]?.height ?? image.height,
+		// );
 
 		setAttributes({
-			url: sizes?.[srcSize]?.url ?? sizes?.[srcSize]?.source_url ?? null,
+			url:
+				sizes?.[srcSize]?.url ??
+				sizes?.[srcSize]?.source_url ??
+				image.url ??
+				null,
 			id: image.id,
 			alt: image.alt,
 			width: sizes?.[srcSize]?.width ?? sizes?.[srcSize]?.width ?? image.width,
@@ -210,8 +224,6 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
 	};
 
 	useEffect(() => {
-		console.log("her useeffect");
-
 		if (!id && isBlobURL(url)) {
 			setAttributes(RESET_ATTRIBUTES);
 		}
@@ -246,6 +258,31 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
 			width: selectedNewImage.width,
 			height: selectedNewImage.height,
 			srcSize: newImageLabel,
+		});
+	};
+
+	const handleSelectSrcsetSize = (newVal) => {
+		const [selectedValue] = newVal;
+		console.log("clicked", selectedValue);
+
+		let updatedSrcset = srcsetSizes;
+
+		if (updatedSrcset.includes(selectedValue)) {
+			updatedSrcset = updatedSrcset.filter((val) => val !== selectedValue);
+		} else {
+			updatedSrcset.push(selectedValue);
+		}
+
+		console.log("updated: ", updatedSrcset);
+
+		setAttributes({
+			srcsetSizes: updatedSrcset,
+		});
+	};
+
+	const handleChangeSizes = (newVal) => {
+		setAttributes({
+			sizes: newVal,
 		});
 	};
 
@@ -300,14 +337,37 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
 					)}
 
 					{id && !isBlobURL(url) && (
-						<SelectControl
-							__next40pxDefaultSize
-							__nextHasNoMarginBottom
-							label={__("Bildgrößen", metadata.textdomain)}
-							value={srcSize}
-							options={getImageSizeOptions()}
-							onChange={onChangeImageSize}
-						/>
+						<>
+							<SelectControl
+								__next40pxDefaultSize
+								__nextHasNoMarginBottom
+								label={__("Bildgrößen", metadata.textdomain)}
+								value={srcSize}
+								options={getImageSizeOptions()}
+								onChange={onChangeImageSize}
+							/>
+
+							<SelectControl
+								multiple
+								label={__(
+									"Bildgrößen für srcset auswählen",
+									metadata.textdomain,
+								)}
+								value={srcsetSizes}
+								onChange={handleSelectSrcsetSize}
+								options={srcsetOptions}
+								__next40pxDefaultSize
+								__nextHasNoMarginBottom
+							/>
+
+							<TextareaControl
+								__nextHasNoMarginBottom
+								__next40pxDefaultSize
+								label={__("Sizes", metadata.textdomain)}
+								value={sizes}
+								onChange={handleChangeSizes}
+							/>
+						</>
 					)}
 				</PanelBody>
 				<PanelBody

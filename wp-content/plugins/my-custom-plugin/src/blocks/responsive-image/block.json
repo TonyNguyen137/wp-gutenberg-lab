@@ -36,7 +36,8 @@
 			"default": "image-770"
 		},
 		"srcsetSizes": {
-			"type": "array"
+			"type": "array",
+			"default": []
 		},
 		"sizes": {
 			"type": "string"
