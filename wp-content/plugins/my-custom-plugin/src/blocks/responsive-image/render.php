@@ -25,7 +25,6 @@
 	$sizes = isset( $attributes['sizes'] ) ? $attributes['sizes'] : '';
 	$alt = '';
 	
-	var_dump($srcsetSizes);
 
 	if ( $id ) {
 		$alt = get_post_meta( $id, '_wp_attachment_image_alt', true );

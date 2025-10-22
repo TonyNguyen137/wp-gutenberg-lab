@@ -19,8 +19,7 @@ add_action( 'wp_enqueue_scripts', 'dequeue_wp_block_library_css', 100 );
 function prefix_remove_core_block_styles() {
 	global $wp_styles;
 
-	$keep = [];
-	vdump($wp_styles->queue);
+	$keep = ["wp-block-navigation"];
 	foreach ( $wp_styles->queue as $key => $handle ) {
 		if ( (strpos( $handle, 'wp-block-' ) === 0  || strpos( $handle, 'wp-emoji-' ) === 0) && !in_array( $handle, $keep )   ) {
 
