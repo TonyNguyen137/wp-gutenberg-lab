@@ -21,7 +21,14 @@ const STYLE_ALIGN_RIGHT = "right";
 const STYLE_ALIGN_CENTER = "center";
 const STYLE_ISOLATION_AUTO = "auto";
 export default function save({ attributes }) {
-	const { textAlign, position, isolation, tagName: Tag } = attributes;
+	const {
+		textAlign,
+		position,
+		isolation,
+		tagName: Tag,
+		ariaLabel,
+		ariaLabelledBy,
+	} = attributes;
 
 	const style = {
 		...{
@@ -40,6 +47,8 @@ export default function save({ attributes }) {
 
 	const blockProps = useBlockProps.save({
 		style,
+		"aria-label": ariaLabel || undefined,
+		"aria-labelledby": ariaLabelledBy || undefined,
 	});
 	const innerBlocksProps = useInnerBlocksProps.save(blockProps);
 	return <Tag {...innerBlocksProps} />;

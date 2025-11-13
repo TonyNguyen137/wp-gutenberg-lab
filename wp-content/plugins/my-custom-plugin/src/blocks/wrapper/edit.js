@@ -18,9 +18,13 @@ import {
 	BlockControls,
 	AlignmentControl,
 } from "@wordpress/block-editor";
-import { PanelBody, SelectControl, ToggleControl } from "@wordpress/components";
-import { useDispatch } from "@wordpress/data";
-import { store as blockEditorStore } from "@wordpress/block-editor";
+import {
+	PanelBody,
+	SelectControl,
+	ToggleControl,
+	TextControl,
+} from "@wordpress/components";
+
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -48,7 +52,15 @@ const STYLE_ISOLATION_ISOLATE = "isolate";
 const CLASS_OUTLINE = "has-outline";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
-	const { textAlign, position, isolation, hasOutline, tagName } = attributes;
+	const {
+		textAlign,
+		position,
+		isolation,
+		hasOutline,
+		tagName,
+		ariaLabel,
+		ariaLabelledBy,
+	} = attributes;
 
 	const classes = [hasOutline ? CLASS_OUTLINE : undefined];
 
@@ -70,6 +82,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const blockProps = useBlockProps({
 		className: classes.join(" "),
 		style,
+		"aria-label": ariaLabel || undefined,
+		"aria-labelledby": ariaLabelledBy || undefined,
 	});
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps);
@@ -102,6 +116,18 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const handleSelectTagName = (newValue) => {
 		setAttributes({
 			tagName: newValue,
+		});
+	};
+
+	const handleAriaLabelChange = (newValue) => {
+		setAttributes({
+			ariaLabel: newValue,
+		});
+	};
+
+	const handleAriaLabelledByChange = (newValue) => {
+		setAttributes({
+			ariaLabelledBy: newValue,
 		});
 	};
 
@@ -171,6 +197,30 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
+				<PanelBody initialOpen={false} title={__("A11y", metadata.textdomain)}>
+					<TextControl
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
+						label={__("Aria Label", metadata.textdomain)}
+						value={ariaLabel}
+						onChange={handleAriaLabelChange}
+						help={__(
+							"Text, der von Screenreadern vorgelesen wird ",
+							metadata.textdomain,
+						)}
+					/>
+					<TextControl
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
+						label={__("Aria Labelled By", metadata.textdomain)}
+						value={ariaLabelledBy}
+						onChange={handleAriaLabelledByChange}
+						help={__(
+							"ID eines Elements, das diesen Block beschreibt",
+							metadata.textdomain,
+						)}
+					/>
+				</PanelBody>
 			</InspectorControls>
 			<InspectorControls group="advanced">
 				<SelectControl
@@ -185,6 +235,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						{ label: "<section>", value: "section" },
 						{ label: "<article>", value: "article" },
 						{ label: "<aside>", value: "aside" },
+						{ label: "<figure>", value: "figure" },
 						{ label: "<footer>", value: "footer" },
 					]}
 				/>

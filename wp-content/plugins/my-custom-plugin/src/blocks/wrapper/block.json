@@ -50,6 +50,12 @@
 		"hasOutline": {
 			"type": "boolean",
 			"default": true
+		},
+		"ariaLabel": {
+			"type": "string"
+		},
+		"ariaLabelledBy": {
+			"type": "string"
 		}
 	},
 	"textdomain": "yourtextdomain",

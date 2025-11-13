@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "yournamespace/query-loop",
+	"name": "yournamespace/provider",
 	"version": "0.1.0",
-	"title": "Query Loop",
+	"title": "Provider",
 	"category": "widgets",
 	"icon": "smiley",
 	"description": "Example block scaffolded with Create Block tool.",
@@ -11,28 +11,19 @@
 	"supports": {
 		"html": false
 	},
+	"usesContext": ["postId", "postType"],
 	"attributes": {
-		"numberOfItems": {
-			"type": "integer",
-			"default": 10
-		},
-		"order": {
+		"message": {
 			"type": "string",
-			"default": "desc"
-		},
-		"orderBy": {
-			"type": "string",
-			"default": "date"
-		},
-		"category": {
-			"type": "string",
-			"default": "alle"
+			"default": "Hello from Provider block!"
 		}
+	},
+	"providesContext": {
+		"myCusomPlugin/message": "message"
 	},
 	"textdomain": "yourtextdomain",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"render": "file:./render.php",
 	"viewScript": "file:./view.js"
 }

@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "yournamespace/query-loop",
+	"name": "youtnamespace/consumer",
 	"version": "0.1.0",
-	"title": "Query Loop",
+	"title": "Consumer",
 	"category": "widgets",
 	"icon": "smiley",
 	"description": "Example block scaffolded with Create Block tool.",
@@ -11,24 +11,8 @@
 	"supports": {
 		"html": false
 	},
-	"attributes": {
-		"numberOfItems": {
-			"type": "integer",
-			"default": 10
-		},
-		"order": {
-			"type": "string",
-			"default": "desc"
-		},
-		"orderBy": {
-			"type": "string",
-			"default": "date"
-		},
-		"category": {
-			"type": "string",
-			"default": "alle"
-		}
-	},
+	"usesContext": ["postId", "postType", "myCusomPlugin/message"],
+
 	"textdomain": "yourtextdomain",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
