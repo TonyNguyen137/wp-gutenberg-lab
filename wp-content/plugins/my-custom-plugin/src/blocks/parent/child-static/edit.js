@@ -12,13 +12,7 @@ import { __ } from "@wordpress/i18n";
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps } from "@wordpress/block-editor";
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
+import metadata from "./block.json";
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -31,7 +25,7 @@ import { useBlockProps } from "@wordpress/block-editor";
 export default function Edit() {
 	return (
 		<p {...useBlockProps()}>
-			{__("Child – hello from the editor!", "yourtextdomain")}
+			{__("Child static – hello from the editor!", metadata.textdomain)}
 		</p>
 	);
 }

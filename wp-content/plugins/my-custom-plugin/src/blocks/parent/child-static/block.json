@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "yournamespace/child",
+	"name": "yournamespace/child-static",
 	"version": "0.1.0",
-	"title": "Child Updated",
+	"title": "Child Static",
 	"category": "widgets",
 	"icon": "smiley",
 	"description": "Example block scaffolded with Create Block tool.",

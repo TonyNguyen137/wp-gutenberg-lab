@@ -2,13 +2,13 @@
 
 $content = $attributes["content"] ?? '';
 
-var_dump($attributes["content"] );
+// var_dump($attributes["content"] );
 
 ?>
 
 
 <?php if(!empty($content)): ?>
 
-   <figcaption><?php echo $content; ?></figcaption>
+   <figcaption <?php echo get_block_wrapper_attributes(); ?>><?php echo $content; ?></figcaption>
 
 <?php endif; ?>

@@ -28,6 +28,7 @@
 			"default": "Bildunterschrift"
 		}
 	},
+	"parent": ["yournamespace/figure"],
 	"textdomain": "yourtextdomain",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",

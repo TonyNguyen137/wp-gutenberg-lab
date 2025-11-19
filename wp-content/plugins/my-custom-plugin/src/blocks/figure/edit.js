@@ -3,7 +3,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
-import { __ } from "@wordpress/i18n";
+import { __ } from '@wordpress/i18n';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -11,7 +11,7 @@ import { __ } from "@wordpress/i18n";
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
+import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -19,7 +19,7 @@ import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import "./editor.scss";
+import './editor.scss';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -30,11 +30,20 @@ import "./editor.scss";
  * @return {Element} Element to render.
  */
 
-const TEMPLATE = [["yournamespace/child-static", {}]];
-
+const MY_TEMPLATE = [
+	['yournamespace/image', {}],
+	['yournamespace/caption', {}],
+];
 export default function Edit() {
 	const blockProps = useBlockProps();
-	const innerBlocksProps = useInnerBlocksProps(blockProps);
-
-	return <div {...innerBlocksProps} />;
+	const { children, ...innerBlocksProps } = useInnerBlocksProps(blockProps, {
+		allowedBlocks: ['yournamespace/image', 'yournamespace/caption'],
+		template: MY_TEMPLATE,
+		templateLock: 'all',
+	});
+	return (
+		<>
+			<figure {...innerBlocksProps}>{children}</figure>
+		</>
+	);
 }
