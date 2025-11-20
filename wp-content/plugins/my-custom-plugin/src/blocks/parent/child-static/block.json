@@ -11,6 +11,12 @@
 	"supports": {
 		"html": false
 	},
+	"attributes": {
+		"content": {
+			"type": "string",
+			"default": "I am a child"
+		}
+	},
 	"parent": ["yournamespace/parent"],
 	"textdomain": "yourtextdomain"
 }

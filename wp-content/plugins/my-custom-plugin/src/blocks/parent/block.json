@@ -11,6 +11,48 @@
 	"supports": {
 		"html": false
 	},
+	"variations": [
+		{
+			"name": "parent-variation-left",
+			"title": "Parent Variation Left",
+			"attributes": {
+				"variant": "left"
+			},
+			"innerBlocks": [
+				[
+					"yournamespace/child-static",
+					{
+						"content": "I am a child static left"
+					}
+				]
+			],
+			"isActive": ["variant"],
+			"isDefault": true
+		},
+		{
+			"name": "parent-variation-right",
+			"title": "Parent Variation Right",
+			"attributes": {
+				"variant": "right"
+			},
+			"innerBlocks": [
+				[
+					"yournamespace/child-static",
+					{
+						"content": "I am a child static right"
+					}
+				]
+			],
+			"isActive": ["variant"],
+			"scope": ["block"]
+		}
+	],
+	"attributes": {
+		"variant": {
+			"type": "string"
+		}
+	},
+	"parent": ["yournamespace/parent-container"],
 	"textdomain": "yourtextdomain",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",

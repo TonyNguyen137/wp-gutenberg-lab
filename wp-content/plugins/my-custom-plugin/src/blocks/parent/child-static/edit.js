@@ -3,7 +3,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
-import { __ } from "@wordpress/i18n";
+import { __ } from '@wordpress/i18n';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -11,8 +11,8 @@ import { __ } from "@wordpress/i18n";
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from "@wordpress/block-editor";
-import metadata from "./block.json";
+import { useBlockProps } from '@wordpress/block-editor';
+import metadata from './block.json';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -22,10 +22,8 @@ import metadata from "./block.json";
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
-	return (
-		<p {...useBlockProps()}>
-			{__("Child static – hello from the editor!", metadata.textdomain)}
-		</p>
-	);
+export default function Edit({ attributes }) {
+	const { content } = attributes;
+
+	return <p {...useBlockProps()}>{__(content, metadata.textdomain)}</p>;
 }
