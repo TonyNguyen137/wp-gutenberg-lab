@@ -1,0 +1,14 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-yournamespace-grid {
+	min-height: 32px;
+	outline: 2px dashed black;
+
+	> * {
+		outline: 1px dashed black;
+	}
+}

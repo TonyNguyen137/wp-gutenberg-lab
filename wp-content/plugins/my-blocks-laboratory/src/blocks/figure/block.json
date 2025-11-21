@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "yournamespace/figure",
+	"version": "0.1.0",
+	"title": "Bild mit Bildunterschrift",
+	"category": "media",
+	"icon": "cover-image",
+	"description": "",
+	"example": {
+		"innerBlocks": [
+			{
+				"name": "yournamespace/image",
+				"attributes": {
+					"url": "https://picsum.photos/700/500"
+				}
+			},
+			{
+				"name": "yournamespace/caption",
+				"attributes": {
+					"content": "bildunterschrift"
+				}
+			}
+		]
+	},
+	"supports": {
+		"html": false
+	},
+
+	"textdomain": "figure",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css"
+}

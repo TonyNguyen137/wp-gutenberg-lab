@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "yournamespace/wrapper",
+	"version": "0.1.0",
+	"title": "Gruppierung",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "Example block scaffolded with Create Block tool.",
+	"example": {},
+	"supports": {
+		"html": true,
+		"anchor": true,
+		"color": {
+			"text": true,
+			"background": true,
+			"gradients": true,
+			"__experimentalDefaultControls": {
+				"color": false,
+				"background": false,
+				"gradients": false
+			}
+		},
+		"spacing": {
+			"padding": true,
+			"margin": true,
+			"__experimentalDefaultControls": {
+				"padding": false,
+				"margin": false
+			}
+		}
+	},
+	"attributes": {
+		"tagName": {
+			"type": "string",
+			"default": "div"
+		},
+		"position": {
+			"enum": ["static", "relative"],
+			"default": "static"
+		},
+		"isolation": {
+			"enum": ["isolate", "auto"],
+			"default": "auto"
+		},
+		"textAlign": {
+			"enum": ["left", "center", "right"],
+			"default": "left"
+		},
+		"hasOutline": {
+			"type": "boolean",
+			"default": true
+		},
+		"ariaLabel": {
+			"type": "string"
+		},
+		"ariaLabelledBy": {
+			"type": "string"
+		}
+	},
+	"textdomain": "yourtextdomain",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css"
+}

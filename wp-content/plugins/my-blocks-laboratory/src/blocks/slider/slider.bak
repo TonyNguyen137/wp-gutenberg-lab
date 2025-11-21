@@ -1,0 +1,382 @@
+<InspectorControls>
+				<PanelBody title={__("Slider Konfiguration", metadata.textdomain)}>
+					<SelectControl
+						__nextHasNoMarginBottom={true}
+						__next40pxDefaultSize={true}
+						label={__("Slider Typ", metadata.textdomain)}
+						value={configuration.type}
+						onChange={(newVal) => {
+							console.log("new Val Type", newVal);
+
+							if (newVal === "fade") {
+								setAttributes({
+									configuration: {
+										...configuration,
+										type: newVal,
+										breakpoints: {},
+									},
+								});
+							} else if (newVal === "slide") {
+								console.log("breakpoints", breakpoints);
+								setAttributes({
+									configuration: {
+										...configuration,
+										type: newVal,
+										breakpoints: breakpoints.configuration,
+									},
+								});
+							}
+						}}
+						options={[
+							{ label: "Slide", value: "slide" },
+							{ label: "Fade", value: "fade" },
+						]}
+					/>
+
+					{configuration.type === "slide" && (
+						<>
+							<TextControl
+								__nextHasNoMarginBottom={true}
+								__next40pxDefaultSize={true}
+								label={__("Anzahl sichtbarer Slides", metadata.textdomain)}
+								type="number"
+								value={configuration.perPage}
+								onChange={(newVal) => {
+									setAttributes({
+										configuration: {
+											...configuration,
+											perPage: Number(newVal),
+										},
+									});
+								}}
+							/>
+
+							<TextControl
+								type="number"
+								value={configuration.gap}
+								label={__("Abstand zwischen Slides (px)", metadata.textdomain)}
+								onChange={(newVal) => {
+									setAttributes({
+										configuration: {
+											...configuration,
+											gap: Number(newVal),
+										},
+									});
+								}}
+							/>
+						</>
+					)}
+
+					<ToggleControl
+						__nextHasNoMarginBottom={true}
+						label="Autoplay"
+						help={__(
+							configuration.autoplay ? "an" : "aus",
+							metadata.textdomain,
+						)}
+						checked={configuration.autoplay}
+						onChange={(newVal) => {
+							setAttributes({
+								configuration: {
+									...configuration,
+									autoplay: newVal,
+								},
+							});
+						}}
+					/>
+
+					<ToggleControl
+						__nextHasNoMarginBottom={true}
+						label="Rewind"
+						help={__(configuration.rewind ? "an" : "aus", metadata.textdomain)}
+						checked={configuration.rewind}
+						onChange={(newVal) => {
+							setAttributes({
+								configuration: {
+									...configuration,
+									rewind: newVal,
+								},
+							});
+						}}
+					/>
+
+					{configuration.autoplay && (
+						<TextControl
+							__nextHasNoMarginBottom={true}
+							__next40pxDefaultSize={true}
+							type="number"
+							label={__("Intervall (ms)", metadata.textdomain)}
+							value={configuration.interval}
+							onChange={(newVal) =>
+								setAttributes({
+									configuration: {
+										...configuration,
+										interval: newVal,
+									},
+								})
+							}
+						/>
+					)}
+
+					{/*<ToggleControl*/}
+					{/*	__nextHasNoMarginBottom={true}*/}
+					{/*	label="Pagination"*/}
+					{/*	help={__(*/}
+					{/*		configuration.pagination ? "an" : "aus",*/}
+					{/*		metadata.textdomain,*/}
+					{/*	)}*/}
+					{/*	checked={configuration.pagination}*/}
+					{/*	onChange={(newVal) => {*/}
+					{/*		// console.log("configuration pagination", configuration);*/}
+
+					{/*		setAttributes({*/}
+					{/*			configuration: {*/}
+					{/*				...configuration,*/}
+					{/*				pagination: newVal,*/}
+					{/*			},*/}
+					{/*		});*/}
+					{/*	}}*/}
+					{/*/>*/}
+
+					{configuration.type === "slide" && (
+						<>
+							<h2>Breakpoints</h2>
+							<ToggleControl
+								__nextHasNoMarginBottom={true}
+								__next40pxDefaultSize={true}
+								label={__(">= 375px")}
+								help={__(
+									configuration.has375bp ? "an" : "aus",
+									metadata.textdomain,
+								)}
+								checked={breakpoints.has375bp}
+								onChange={(newVal) => {
+									setAttributes({
+										breakpoints: {
+											...breakpoints,
+											has375bp: newVal,
+										},
+									});
+
+									if (newVal) {
+										setAttributes({
+											configuration: {
+												...configuration,
+												breakpoints: {
+													...configuration.breakpoints,
+													375: breakpoints.configuration[375],
+												},
+											},
+										});
+									} else {
+										const { 375: bp375, ...rest } = configuration.breakpoints;
+
+										setAttributes({
+											configuration: {
+												...configuration,
+												breakpoints: rest,
+											},
+										});
+									}
+								}}
+							/>
+
+							{breakpoints.has375bp && (
+								<>
+									<TextControl
+										__nextHasNoMarginBottom={true}
+										__next40pxDefaultSize={true}
+										label={__("Anzahl sichtarer Slides", metadata.textdomain)}
+										type="number"
+										value={breakpoints.configuration[375].perPage}
+										onChange={(newVal) => {
+											console.log("neaVal", newVal);
+											console.log("typeof", typeof Number(newVal));
+
+											setAttributes({
+												breakpoints: {
+													...breakpoints,
+													configuration: {
+														...breakpoints.configuration,
+														375: {
+															...breakpoints.configuration[375],
+															perPage: Number(newVal),
+														},
+													},
+												},
+
+												configuration: {
+													...configuration,
+													breakpoints: {
+														...configuration.breakpoints,
+														375: {
+															...configuration.breakpoints["375"],
+															perPage: Number(newVal),
+														},
+													},
+												},
+											});
+										}}
+									/>
+
+									<TextControl
+										__nextHasNoMarginBottom={true}
+										__next40pxDefaultSize={true}
+										label={__(
+											"Abstand zwischen Slides (px)",
+											metadata.textdomain,
+										)}
+										type="number"
+										value={breakpoints.configuration[375].gap}
+										onChange={(newVal) => {
+											console.log("neaVal", newVal);
+											console.log("typeof", typeof Number(newVal));
+
+											setAttributes({
+												breakpoints: {
+													...breakpoints,
+													configuration: {
+														...breakpoints.configuration,
+														375: {
+															...breakpoints.configuration[375],
+															gap: Number(newVal),
+														},
+													},
+												},
+
+												configuration: {
+													...configuration,
+													breakpoints: {
+														...configuration.breakpoints,
+														375: {
+															...configuration.breakpoints["375"],
+															gap: Number(newVal),
+														},
+													},
+												},
+											});
+										}}
+									/>
+								</>
+							)}
+
+							<ToggleControl
+								__nextHasNoMarginBottom={true}
+								__next40pxDefaultSize={true}
+								label={__(">= 576px")}
+								help={__(
+									breakpoints.has576bp ? "an" : "aus",
+									metadata.textdomain,
+								)}
+								checked={breakpoints.has576bp}
+								onChange={(newVal) => {
+									setAttributes({
+										breakpoints: {
+											...breakpoints,
+											has576bp: newVal,
+										},
+									});
+
+									if (newVal) {
+										setAttributes({
+											configuration: {
+												...configuration,
+												breakpoints: {
+													...configuration.breakpoints,
+													576: { ...breakpoints.configuration[576] },
+												},
+											},
+										});
+									} else {
+										console.log("before rest", configuration.breakpoints);
+										const { 576: bp576, ...rest } = configuration.breakpoints;
+
+										console.log("rest", rest);
+										setAttributes({
+											configuration: {
+												...configuration,
+												breakpoints: rest,
+											},
+										});
+									}
+								}}
+							/>
+
+							{breakpoints.has576bp && (
+								<>
+									<TextControl
+										__nextHasNoMarginBottom={true}
+										__next40pxDefaultSize={true}
+										label={__("Anzahl sichtarer Slides", metadata.textdomain)}
+										type="number"
+										value={breakpoints.configuration["576"].perPage}
+										onChange={(newVal) => {
+											setAttributes({
+												breakpoints: {
+													...breakpoints,
+													configuration: {
+														...breakpoints.configuration,
+														576: {
+															...breakpoints.configuration["576"],
+															perPage: Number(newVal),
+														},
+													},
+												},
+
+												configuration: {
+													...configuration,
+													breakpoints: {
+														...configuration.breakpoints,
+														576: {
+															...configuration.breakpoints["576"],
+															perPage: Number(newVal),
+														},
+													},
+												},
+											});
+										}}
+									/>
+
+									<TextControl
+										__nextHasNoMarginBottom={true}
+										__next40pxDefaultSize={true}
+										label={__(
+											"Abstand zwischen Slides (px)",
+											metadata.textdomain,
+										)}
+										type="number"
+										value={breakpoints["configuration"]["576"].gap}
+										onChange={(newVal) => {
+											console.log("neaVal", newVal);
+											console.log("typeof", typeof Number(newVal));
+											setAttributes({
+												breakpoints: {
+													...breakpoints,
+													configuration: {
+														...breakpoints.configuration,
+														576: {
+															...breakpoints.configuration["576"],
+															gap: Number(newVal),
+														},
+													},
+												},
+
+												configuration: {
+													...configuration,
+													breakpoints: {
+														...configuration.breakpoints,
+														576: {
+															...configuration.breakpoints["576"],
+															gap: Number(newVal),
+														},
+													},
+												},
+											});
+										}}
+									/>
+								</>
+							)}
+						</>
+					)}
+				</PanelBody>
+			</InspectorControls>

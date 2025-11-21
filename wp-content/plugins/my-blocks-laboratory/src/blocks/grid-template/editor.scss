@@ -1,0 +1,17 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-yournamespace-grid-template {
+	border: 1px dotted #f00;
+	min-height: 150px;
+
+	& figure > div {
+		width: 100% !important;
+		height: 100% !important;
+		max-width: 100% !important;
+		max-height: 100% !important;
+	}
+}
