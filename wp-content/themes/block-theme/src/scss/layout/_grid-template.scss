@@ -1,0 +1,23 @@
+@use "../abstracts" as *;
+
+@include mq(lg) {
+  .lg-grid-cols-1fr-1fr {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.wp-block-post-template {
+  display: grid;
+  column-gap: fluid(12, 32, 320, 768, px);
+  row-gap: 32px;
+
+  @include mq(xsm) {
+    grid-template-columns: repeat(2, minmax(0, 300px));
+    justify-content: center;
+  }
+
+  @include mq(lg) {
+    justify-content: space-between;
+    column-gap: 16px;
+  }
+}

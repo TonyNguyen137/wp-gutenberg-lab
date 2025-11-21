@@ -1,0 +1,7 @@
+@use '../abstracts' as *;
+
+body.nw-theme-winter {
+  --nw-pattern-path: url("/assets/themes/winter/snowflake.png");
+  --nw-divider-path: url("/assets/themes/winter/divider.png");
+  --footer-line-color: var(--wp--preset--gradient--personalien);
+}

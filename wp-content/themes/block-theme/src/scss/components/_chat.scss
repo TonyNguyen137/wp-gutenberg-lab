@@ -1,0 +1,76 @@
+
+@use "../abstracts" as *;
+@use "sass:color";
+
+
+.wp-block-wb-chat-container {
+  display: grid;
+  row-gap: 39px;
+  max-width: 1235px;
+  padding-inline: fluid(16, 40, sm, xl, px);
+  margin-inline: auto;
+}
+
+.wp-block-wb-chat-bubble {
+  --_r: 25px;
+  --_x: #{fluid(16, 40, sm, xl, px)};
+  max-width: min(80%, 658px);
+  width: 100%;
+  padding-block: fluid(16, 20, sm, xl, px);
+  padding-inline: fluid(14, 40, sm, xl, px);
+  position: relative;
+  background-color: #EEFFD6;
+  color: var(--wp--preset--color--accent);
+
+  &__name {
+    font-size: fluid(20, 22, sm, lg);
+    margin: 0;
+  }
+
+  p {
+    font-size: fluid(16, 18, sm, lg);
+    margin-block: 16px 0;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 21px;
+    bottom:0;
+  }
+
+  &:nth-child(odd) {
+    border-top-left-radius: var(--_r);
+    border-top-right-radius: var(--_r);
+    border-bottom-right-radius: var(--_r);
+    justify-self: start;
+  }
+
+  &:nth-child(odd)::before {
+    left:0;
+    background-image: url("/assets/svg/chat-arrow-left.svg");
+    transform: translateX(calc(-1 * var(--_x)));
+  }
+
+  &:nth-child(odd) .wp-block-wb-chat-bubble__text {
+    font-weight: 700;
+  }
+
+  &:nth-child(even) {
+    border-top-left-radius: var(--_r);
+    border-top-right-radius: var(--_r);
+    border-bottom-left-radius: var(--_r);
+    justify-self: end;
+  }
+
+
+  &:nth-child(even)::before {
+    right:0;
+    background-image: url("/assets/svg/chat-arrow-right.svg");
+    transform: translateX(var(--_x));
+
+  }
+
+}
+

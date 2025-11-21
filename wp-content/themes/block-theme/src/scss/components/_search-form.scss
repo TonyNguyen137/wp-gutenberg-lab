@@ -1,0 +1,36 @@
+@use "../abstracts" as *;
+@use "sass:map";
+
+.form {
+  background-color: var(--wp--preset--color--neutral);
+  padding: 16px;
+  width: (100%, 400px);
+
+  &__group {
+    display: flex;
+    justify-content: center;
+    margin-top: 4px;
+
+    &:focus-within {
+      outline: 2px solid currentColor;
+      outline-offset: 0.15lh;
+
+    }
+  }
+
+  &__search-field {
+    --focus-width: 0;
+    appearance: none;
+    padding-block: 8px;
+    padding-left: 8px;
+    background: var(--wp--preset--color--white);
+    border: none;
+  }
+
+  &__submit {
+    appearance: none;
+    border: none;
+    background: var(--wp--preset--color--white);
+    cursor: pointer;
+  }
+}

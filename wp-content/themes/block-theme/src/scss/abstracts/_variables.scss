@@ -1,0 +1,50 @@
+@use "sass:map";
+@use "sass:string";
+@use "sass:list";
+@use "sass:math";
+
+$cp-namespace: "";
+
+$grid-breakpoints: (
+  xs: 0,
+  xsm: 375px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1450px,
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1404px,
+);
+
+$container-padding: 12px;
+$grid-breakpoints-up: map.remove($grid-breakpoints, xs);
+
+$responsive-custom-properties: (
+  xs: (
+    "container-padding": (
+      value: $container-padding,
+    ),
+  ),
+  sm: (
+    container: map.get($container-max-widths, sm),
+  ),
+  md: (
+    container: map.get($container-max-widths, md),
+  ),
+  lg: (
+    container: map.get($container-max-widths, lg),
+  ),
+  xl: (
+    container: map.get($container-max-widths, xl),
+  ),
+  xxl: (
+    container: map.get($container-max-widths, xxl),
+  ),
+);

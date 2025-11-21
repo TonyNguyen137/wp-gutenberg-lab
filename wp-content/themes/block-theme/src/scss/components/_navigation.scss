@@ -1,0 +1,205 @@
+@use "../abstracts" as *;
+@use "sass:map";
+
+.navbar {
+  --_offcanvas-width: 400px;
+  --_border: 1px solid black;
+  --_transition-duration: 300ms;
+  --_p: 12px;
+  background-color: var(--wp--preset--color--white);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+  &__container {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    margin-inline: auto;
+    max-width: var(--container);
+    padding-inline: var(--container-padding);
+    padding-block: 25px;
+    position: relative;
+  }
+
+  &__btn-close {
+    float: right;
+  }
+
+  &__btn-open {
+    margin-left: 16px;
+  }
+
+  &__btn-open,
+  &__btn-close {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+
+    //&:focus-visible {
+    //  outline: 0;
+    //  box-shadow: var(--box-shadow-focus);
+    //}
+  }
+
+  &__svg {
+    display: block;
+  }
+
+  &__offcanvas {
+    visibility: hidden;
+    padding: 1rem;
+    width: var(--_offcanvas-width);
+    max-width: 100%;
+    background-color: var(--wp--preset--color--white);
+    background-clip: padding-box;
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+    display: flex;
+    row-gap: 16px;
+    flex-direction: column;
+
+    // offcanvas direction - default end
+    top: 0;
+    right: 0;
+    border-left: var(--_border);
+    transform: translateX(100%);
+
+    &.showing {
+      transition: transform var(--_transition-duration, 300ms) ease-in-out;
+    }
+
+    &.showing,
+    &.show {
+      visibility: visible;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    display: flex;
+    row-gap: 24px;
+
+    // align-items: start;
+    flex-direction: column;
+  }
+
+  &__link {
+    padding: 11px 10px;
+    // display: block;
+    color: var(--wp--preset--color--neutral-dark);
+    text-decoration: none;
+    font-size: to-rem(28px);
+    line-height: 1.1;
+    &[aria-current="page"],
+    &:has(+ .dropdown__list [aria-current="page"]) {
+      --focus-color: var(--wp--preset--color--neutral-dark);
+      background-color: var(--wp--preset--color--accent);
+      color: var(--wp--preset--color--white);
+      border-radius: 3px;
+    }
+  }
+
+  &__link:not([aria-current="page"]):hover,
+  .dropdown__link:not([aria-current="page"]):hover,
+  .dropdown__link[aria-current="page"] {
+    text-decoration-line: underline;
+    text-decoration-color: var(--wp--preset--color--accent);
+    text-underline-offset: 7px;
+  }
+
+  .dropdown__link {
+    font-size: to-rem(20);
+  }
+
+  // &__link.disabled {
+  //   color: rgba(0, 0, 0, 0.3);
+  //   pointer-events: none;
+  //   cursor: default;
+  // }
+
+  &__offcanvas-header {
+    text-align: end;
+  }
+
+  /* == modifiers == */
+  &--open &__offcanvas {
+    transform: none;
+  }
+
+  .form {
+    position: absolute;
+    bottom: 0;
+    right: var(--container-padding);
+    transform: translateY(100%);
+  }
+
+  @include mq(xl) {
+    --_gap: 16px;
+    // --_gap-fluid: #{fluid(16, 58, lg, xl, px)};
+
+    &__container {
+      justify-content: center;
+      column-gap: var(--_gap);
+    }
+
+    &__offcanvas {
+      all: unset;
+      flex-grow: 1;
+    }
+
+    &__offcanvas-body {
+      display: flex;
+      align-items: center;
+      column-gap: var(--_gap);
+    }
+
+    &__btn-open,
+    &__btn-close {
+      display: none;
+    }
+
+    &__link {
+      font-size: fluid(20, 28, xl, xxl);
+    }
+
+    .dropdown__link {
+      font-size: fluid(16, 20, xl, xxl);
+    }
+
+    &__list {
+      flex-direction: row;
+      column-gap: var(--_gap);
+      overflow-y: revert;
+      align-items: center;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+
+    &__item:last-child .dropdown__wrapper {
+      left: auto;
+      right: 0;
+      transform: translate(9%);
+    }
+
+    &__item:hover .dropdown__wrapper {
+      display: block;
+    }
+
+    .dropdown__wrapper {
+      position: absolute;
+      padding-top: 8px;
+    }
+  }
+}

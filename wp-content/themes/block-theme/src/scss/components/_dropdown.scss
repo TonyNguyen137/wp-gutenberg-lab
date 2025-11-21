@@ -1,0 +1,87 @@
+@use "../abstracts" as *;
+
+.dropdown {
+  position: relative;
+
+  &__toggle {
+    // background-color: transparent;
+    // cursor: pointer;
+    // border: none;
+    // white-space: nowrap;
+    padding: 8px 0;
+    // width: 100%;
+    // text-align: left;
+    // transition: var(--box-shadow-focus);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  // &__toggle:hover + &__list {
+  //   display: block;
+  // }
+
+  &__toggle[aria-current="page"]::after,
+  &__toggle:has(+ .dropdown__list [aria-current="page"])::after {
+    background-image: url("/assets/svg/chevron-down-white.svg");
+  }
+
+  &__toggle::after {
+    content: "";
+    display: block;
+    width: 17px;
+    height: 10px;
+    background-image: url("/assets/svg/chevron-down.svg");
+  }
+
+  // &__toggle:focus + &__list {
+  //   visibility: visible;
+  //   opacity: 1;
+  // }
+
+  &__wrapper {
+    position: static;
+    left: 0;
+    top: calc(100%);
+  }
+
+  &__list {
+    list-style: none;
+    background-color: var(--wp--preset--color--white);
+
+    & a {
+      text-decoration: none;
+    }
+  }
+
+  &__item + &__item {
+    margin-top: 8px;
+  }
+
+  &__link {
+    display: block;
+    color: var(--wp--preset--color--neutral-dark);
+  }
+
+  // &__toggle:focus-visible {
+  //   outline: 0;
+  //   box-shadow: var(--box-shadow-focus);
+  // }
+
+  /* == modifier == */
+  &--open &__list {
+    display: block;
+  }
+
+  @include mq(xl) {
+    &__wrapper {
+      display: none;
+    }
+    &__list {
+      padding: 12px;
+      white-space: nowrap;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+    }
+  }
+}

@@ -1,0 +1,29 @@
+@use "../abstracts" as *;
+
+.grid-cols-2 {
+
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  .figure {
+    order: -1;
+  }
+
+  img {
+    width: 660px;
+    aspect-ratio: 660 / 440;
+    object-fit: cover;
+  }
+
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    column-gap: fluid(24, 60, lg, xxl, px);
+
+    .figure {
+      order: 0;
+    }
+
+  }
+}

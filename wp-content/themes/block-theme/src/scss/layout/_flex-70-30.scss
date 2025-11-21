@@ -1,0 +1,57 @@
+@use "../abstracts" as *;
+
+.flex-70-30 {
+  column-gap: fluid(16, 45, md, xxl, px);
+  row-gap: 32px;
+  flex-direction: column;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  img {
+    min-width: 0;
+    aspect-ratio: 1 / 1;
+    width: 400px;
+    height: 100%;
+    object-fit: cover;
+  }
+  .figure {
+    order: -1;
+
+  }
+
+  @include mq(md) {
+    &--md {
+      flex-direction: row;
+
+      .figure {
+        order: 0;
+      }
+
+      & > * {
+        flex: 1;
+      }
+    }
+
+  }
+
+  @include mq(lg) {
+
+    &--lg {
+      flex-direction: row;
+
+      .figure {
+        order: 0;
+      }
+
+      & > * {
+        flex: 1;
+      }
+    }
+
+    & > .figure{
+      flex: 0 0 400px;
+    }
+  }
+}

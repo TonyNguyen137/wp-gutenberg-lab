@@ -1,0 +1,10 @@
+@use "../abstracts" as *;
+.divider {
+  width: 150px;
+  height: 28px;
+  margin-inline: auto;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: var(--nw-divider-path);
+}

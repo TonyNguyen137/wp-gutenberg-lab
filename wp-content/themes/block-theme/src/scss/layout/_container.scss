@@ -1,0 +1,17 @@
+@use "../../scss/abstracts" as *;
+@use "sass:map";
+@use "sass:list";
+
+// Single container class with breakpoint max-widths
+.container {
+  @include make-container;
+
+  // Responsive containers that are 100% wide until a breakpoint
+  @each $breakpoint, $container-max-width in $container-max-widths {
+    $bp: breakpoint-prefix($breakpoint);
+
+    @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+      max-width: $container-max-width;
+    }
+  }
+}

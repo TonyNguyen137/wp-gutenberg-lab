@@ -1,0 +1,94 @@
+@use "../abstracts" as *;
+
+button.btn {
+  appearance: none;
+  cursor: pointer;
+  border: none;
+}
+
+.btn {
+  &--cta {
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: var(--_gap);
+    font-size: to-rem(17px);
+    position: relative;
+    text-decoration-line: none;
+    text-underline-offset: 5px;
+    color: var(--_color);
+
+    &:hover {
+      text-decoration-line: underline;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      background-image: var(--_arrow-path);
+      background-repeat: no-repeat;
+      width: var(--_arrow-width);
+      height: var(--_arrow-height);
+      background-size: var(--_bg-size);
+    }
+    &[disabled] {
+      cursor: wait;
+    }
+    &[disabled] span,
+    &[disabled]::after {
+      visibility: hidden;
+    }
+
+    &[disabled] .spinner {
+      animation-play-state: running;
+      display: inline-block;
+    }
+  }
+
+  &--cta-light {
+    --_arrow-path: url("/assets/svg/chevron-right-colored.svg");
+    --_arrow-width: 10px;
+    --_arrow-height: 15px;
+    --_bg-size: contain;
+    --_color: var(--wp--preset--color--accent);
+    --_gap: 7px;
+  }
+
+  &--cta-dark {
+    --_arrow-path: url("/assets/svg/chevron-right.svg");
+    --_arrow-width: 12px;
+    --_arrow-height: 20px;
+    --_bg-size: cover;
+    --_color: var(--wp--preset--color--white);
+    --_gap: 12px;
+
+    text-transform: uppercase;
+    background-color: var(--wp--preset--color--accent);
+    padding-block: 10px;
+    padding-inline: 12px;
+  }
+
+  &--search {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  &--top {
+    background-color: var(--wp--preset--color--accent);
+    border-radius: 5px;
+    padding: 13px 9px;
+    // position: fixed;
+
+    // bottom: 30px;
+    // right: 40px;
+    display: block;
+    &::after {
+      content: "";
+      display: block;
+      width: 25px;
+      height: 16px;
+      background: url("/assets/svg/chevron-top.svg");
+    }
+  }
+}

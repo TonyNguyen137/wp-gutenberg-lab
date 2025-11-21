@@ -1,0 +1,32 @@
+.grid {
+  display: grid;
+}
+
+.block {
+  display: block !important;
+}
+
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.items-start {
+  align-items: start;
+}
+
+
+.d-none {
+  display: none;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.justify-end {
+  justify-content: end;
+}

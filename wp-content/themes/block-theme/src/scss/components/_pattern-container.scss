@@ -1,0 +1,86 @@
+@use '../abstracts' as *;
+//
+//%isolate {
+//  position: relative;
+//  isolation: isolate;
+//}
+//
+//.pattern-container {
+//  margin-inline: auto;
+//  overflow-x: clip;
+//  @extend %isolate;
+//
+//  &--right::after, &--left::before {
+//    content:"";
+//    position: absolute;
+//    z-index: -1;
+//    background-image: var(--nw-pattern-right-path);
+//    background-repeat: no-repeat;
+//    background-size: contain;
+//    width: var(--nw-pattern-right-width);
+//    height: var(--nw-pattern-right-height);
+//    transform: translate(var(--nw-pattern-right-x, 0), var(--nw-pattern-right-y, 0));
+//    display: var(--nw-pattern-display);
+//
+//  }
+//
+//  &--top-50::after {
+//    top: 50%;
+//  }
+//  &--right::after {
+//    right: 0;
+//  }
+//
+//  &--left::before {
+//    left:0;
+//  }
+//
+//
+//  &--post-landscape {
+//
+//    .post-card--landscape {
+//      @extend %isolate;
+//    }
+//
+//    .post-card--landscape::after {
+//      content:"";
+//      position: absolute;
+//      z-index: -1;
+//      top: var(--nw-post-landscape-top);
+//      background: var(--nw-post-landscape-pattern-path);
+//      width: var(--nw-post-landscape-pattern-width);
+//      height: var(--nw-post-landscape-pattern-height);
+//      display: var(--nw-pattern-display);
+//    }
+//
+//    .post-card:has( > figure:first-child)::after {
+//      left: 0;
+//      transform: translate(calc(-1 * var(--nw-post-landscape-pattern-x, 0)), var(--nw-post-landscape-pattern-y, 0));
+//
+//    }
+//
+//    .post-card:has( > figure:last-child)::after {
+//      right: 0;
+//      transform: translate(var(--nw-post-landscape-pattern-x, 0), var(--nw-post-landscape-pattern-y, 0));
+//    }
+//
+//
+//  }
+//
+//
+//
+//}
+
+body.nw-theme-default {
+  --nw-pattern-path: url("/assets/themes/default/pattern.png");
+  --nw-divider-path: url("/assets/themes/default/divider.png");
+}
+
+main {
+
+  background-image: var(--nw-pattern-path), ;
+  background-size: 446px 226px;
+  //background-position:
+  //        left calc(0% + 550px);
+  background-repeat: repeat-y;
+}

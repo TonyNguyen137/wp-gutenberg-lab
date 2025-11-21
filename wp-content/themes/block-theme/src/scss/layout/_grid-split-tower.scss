@@ -1,0 +1,19 @@
+@use "../abstracts" as *;
+
+.grid-split-tower {
+  row-gap: 24px;
+
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr;
+    column-gap: fluid(24, 60, 1200, 1450, px);
+
+    > :nth-child(4n + 1) {
+      grid-column: 1 / 2;
+      grid-row: 1 / 4;
+    }
+
+    > *:not(:nth-child(4n + 1)) {
+      grid-column: 2 / 3;
+    }
+  }
+}

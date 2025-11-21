@@ -1,0 +1,13 @@
+@use "../abstracts" as *;
+@use "sass:map";
+
+:root {
+  --bp-sm: 576px;
+  --bp-md: 768px;
+  --bp-lg: 992px;
+  --bp-xl: 1200px;
+  --container-padding: 12px;
+
+  // Generates responsive custom properties
+  @include generate-responsive-custom-properties($responsive-custom-properties);
+}

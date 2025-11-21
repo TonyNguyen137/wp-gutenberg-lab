@@ -1,0 +1,7 @@
+@use '../abstracts' as *;
+
+body.nw-theme-default {
+  --nw-pattern-path: url("/assets/themes/default/pattern.png");
+  --nw-divider-path: url("/assets/themes/default/divider.png");
+  --footer-line-color: var(--wp--preset--gradient--primary);
+}

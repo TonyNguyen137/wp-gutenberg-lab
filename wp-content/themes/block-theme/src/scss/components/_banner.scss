@@ -1,0 +1,62 @@
+@use '../abstracts' as *;
+
+.banner {
+  position: relative;
+  padding-block: 65px;
+
+  .wp-block-wb-image-responsive {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+  }
+
+
+  &__wrapper {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 5px;
+    margin-inline: auto;
+    text-align: center;
+    width: min(100% - 24px, 731px);
+    padding-block:fluid(16,35, sm, xxl, px);
+    padding-inline: fluid(20,45, sm, xxl, px);
+  }
+
+
+  p:not(.banner__link) {
+    color: var(---wp--preset--color--neutral-dark);
+  }
+
+  &__link {
+    display: inline-flex;
+    background-color: var(--wp--preset--color--accent);
+    margin-bottom: 0;
+    text-align: center;
+    padding-block: 11px;
+    padding-inline: 15px;
+    border-radius: 5px;
+    column-gap: 8px;
+    align-items: center;
+    color: var(--wp--preset--color--white);
+
+    a {
+      text-decoration: none;
+      font-size: to-rem(17);
+      text-transform: uppercase;
+      font-weight: bold;
+      color: inherit;
+    }
+
+    &::before {
+      content: "";
+      order: 1;
+      width: 12px;
+      height: 20px;
+      background-image: url("/assets/svg/chevron-right.svg");
+    }
+  }
+
+}

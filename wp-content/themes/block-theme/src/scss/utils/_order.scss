@@ -1,0 +1,11 @@
+@use "../abstracts" as *;
+
+.order-1 {
+  order: 1;
+}
+
+@include mq(lg) {
+  .lg-order-0 {
+    order: 0;
+  }
+}

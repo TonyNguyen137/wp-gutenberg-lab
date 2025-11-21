@@ -1,0 +1,36 @@
+@use "../abstracts" as *;
+
+.grid-categories {
+  --_spacing-fl: #{fluid(16, 30, lg, xxl, px)};
+  --_spacing: 32px;
+  display: grid;
+
+  > * {
+    display: grid;
+    row-gap: var(--_spacing);
+  }
+
+  & > :last-child {
+    margin-top: var(--_spacing);
+  }
+
+  @include mq(lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    > * {
+      grid-template-rows: subgrid;
+      grid-row: span 3;
+      row-gap: fluid(30, 60, lg, xxl, px);
+    }
+
+    & > :first-child {
+      padding-right: var(--_spacing-fl);
+    }
+
+    & > :last-child {
+      margin-top: 0;
+      padding-left: var(--_spacing-fl);
+      border-left: 1px solid var(--wp--preset--color--neutral);
+    }
+  }
+}

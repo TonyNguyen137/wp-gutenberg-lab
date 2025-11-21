@@ -1,0 +1,114 @@
+@use "../abstracts" as *;
+
+.footer {
+  --_size: 6px;
+  --_size-lg: 24px;
+  --_spacing: 8px;
+
+  margin-top: var(--wp--preset--spacing--lg);
+  padding-bottom: 25px;
+  background: var(--wp--preset--color--white);
+
+  &::before {
+    content: "";
+    display: block;
+    height: 26px;
+    background-image: var(--footer-line-color);
+    margin-bottom: fluid(24, 54, sm, xl, px);
+  }
+
+  &__container {
+    display: flex;
+    column-gap: var(--_spacing);
+    row-gap: var(--_size-lg);
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__nav {
+    flex-grow: 1;
+  }
+  &__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: var(--_spacing);
+    row-gap: var(--_size-lg);
+  }
+
+  &__item + &__item,
+  &__cta {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+  }
+
+  &__link {
+    color: var(--wp--preset--color--neutral-dark);
+    font-size: to-rem(18);
+    text-decoration-color: var(--wp--preset--color--accent);
+
+    &:hover {
+      text-decoration-line: underline;
+    }
+  }
+
+  &__link,
+  &__cta {
+    text-decoration: none;
+    text-underline-offset: 4px;
+  }
+
+  &__cta {
+    background-color: var(--wp--preset--color--accent);
+    border-radius: 5px;
+    padding: 16px 18px;
+    color: var(--wp--preset--color--white);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: to-rem(17);
+    line-height: 1.1;
+    text-decoration-color: var(--wp--preset--color--white);
+
+    &::after {
+      content: "";
+      width: var(--_size-lg);
+      height: var(--_size-lg);
+      display: block;
+      background-image: url("/assets/svg/send.svg");
+      background-repeat: no-repeat;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      text-decoration-line: underline;
+    }
+  }
+
+  @media (min-width: 370px) {
+    &__item + &__item:not(:last-child)::before {
+      content: "";
+      display: block;
+      width: var(--_size);
+      height: var(--_size);
+      border-radius: 100%;
+      background-image: var(--wp--preset--gradient--primary);
+      flex-shrink: 0;
+    }
+  }
+
+  @include mq(lg) {
+    &__item:nth-last-child(2) {
+      margin-right: auto;
+    }
+  }
+
+  @include mq(xxl) {
+    &__item:first-child {
+      margin-left: auto;
+    }
+  }
+}
