@@ -1,13 +1,37 @@
-@use "../abstracts" as *;
-@use "sass:map";
+@use '../abstracts' as *;
+@use 'sass:map';
 
 :root {
-  --bp-sm: 576px;
-  --bp-md: 768px;
-  --bp-lg: 992px;
-  --bp-xl: 1200px;
-  --container-padding: 12px;
+	--bp-sm: 576px;
+	--bp-md: 768px;
+	--bp-lg: 992px;
+	--bp-xl: 1200px;
+	--container-padding: 12px;
 
-  // Generates responsive custom properties
-  @include generate-responsive-custom-properties($responsive-custom-properties);
+	// Generates responsive custom properties
+	@include generate-responsive-custom-properties($responsive-custom-properties);
+
+	// @include mq(sm) {
+	// 	--wp--style--global--content-size: 540px !important;
+	// }
+
+	// @include mq(md) {
+	// 	--wp--style--global--content-size: 720px !important;
+	// }
+
+	// @include mq(lg) {
+	// 	--wp--style--global--content-size: 960px !important;
+	// }
+
+	// @include mq(xl) {
+	// 	--wp--style--global--content-size: 1140px !important;
+	// }
+
+	// @include mq(xxl) {
+	// 	--wp--style--global--content-size: 1320px !important;
+	// }
 }
+
+// .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+// 	width: 100%;
+// }
